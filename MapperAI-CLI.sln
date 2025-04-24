@@ -1,8 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A51AE086-1190-4E73-8E82-1FE6F4AA31DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapperAI.CLI.Core", "src\MapperAI.CLI.Core\MapperAI.CLI.Core.csproj", "{4E9A154A-F49C-4503-B226-2FCEA8139401}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4E9A154A-F49C-4503-B226-2FCEA8139401} = {A51AE086-1190-4E73-8E82-1FE6F4AA31DC}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4E9A154A-F49C-4503-B226-2FCEA8139401}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E9A154A-F49C-4503-B226-2FCEA8139401}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E9A154A-F49C-4503-B226-2FCEA8139401}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E9A154A-F49C-4503-B226-2FCEA8139401}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

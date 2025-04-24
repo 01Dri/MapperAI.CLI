@@ -5,11 +5,12 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <AssemblyName>mapperai</AssemblyName>
     </PropertyGroup>
 
     <ItemGroup>
       <PackageReference Include="CliFx" Version="2.3.5" />
-      <PackageReference Include="MapperAI.Core" Version="0.0.3-alpha" />
+      <PackageReference Include="MapperAI.Core" Version="0.0.4-alpha" />
     </ItemGroup>
 
 </Project>

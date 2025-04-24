@@ -1,21 +1,21 @@
 ﻿using CliFx;
 using CliFx.Attributes;
 using CliFx.Infrastructure;
+using MapperAI.CLI.Core.Services;
 using MapperAI.Core.Clients.Models;
 using MapperAI.Core.Enums;
-using MapperAI.Services;
 
-namespace MapperAI.Commands;
+namespace MapperAI.CLI.Core.Commands;
 
 [Command("configuration", Description = "LLM Api Configuration.")]
 
 public class ConfigurationCommand : ICommand
 {
     [CommandOption("model_type", 't', Description = "Model type.", IsRequired = true)]
-    public int ModelType { get; set; }
+    public required int ModelType { get; set; }
 
     [CommandOption("model_name", 'n', Description = "Model name.", IsRequired = true)]
-    public string ModelName { get; set; }
+    public required string ModelName { get; set; }
 
     [CommandOption("key", 'k', Description = "Api key.", IsRequired = false)]
     public string? ApiKey { get; set; }
@@ -35,8 +35,8 @@ public class ConfigurationCommand : ICommand
             ApiKey = ApiKey
         };
 
-        ClientConfigurationService configurationService = new ClientConfigurationService(clientConfiguration);
-        configurationService.SaveClientConfigurationFile(IsKeyByEnvironment);
+        ClientConfigurationService configurationService = new ClientConfigurationService();
+        configurationService.SaveClientConfigurationFile(IsKeyByEnvironment, clientConfiguration);
         return default;
     }
 
