@@ -10,7 +10,7 @@
 
     <ItemGroup>
       <PackageReference Include="CliFx" Version="2.3.5" />
-      <PackageReference Include="MapperAI.Core" Version="0.0.4-alpha" />
+      <PackageReference Include="MapperAI.Core" Version="0.1.1-alpha" />
     </ItemGroup>
 
 </Project>

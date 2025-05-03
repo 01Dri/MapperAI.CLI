@@ -29,16 +29,16 @@ public class ConvertCommand : ICommand
     public async ValueTask ExecuteAsync(IConsole console)
     {
         ClientConfigurationService configurationService = new();
-        ClientConfiguration? clientConfiguration = configurationService.GetClientConfiguration();
+        MapperClientConfiguration? clientConfiguration = configurationService.GetClientConfiguration();
         if (clientConfiguration == null)
             throw new ApplicationException("If is your first time using MapperAI CLI, you need to configure with configuration command");
         var serializer = new MapperSerializer();
-        var mapper = new FileMapper(new ClientFactoryAI(serializer), serializer);
+        var mapper = new FileMapper(new MapperClientFactory(serializer), serializer, clientConfiguration);
         var configuration = new FileMapperConfiguration(InputPath, OutputFolder)
         {
             FileName = Filename,
             Extension = Language
         };
-        await mapper.MapAsync(configuration, clientConfiguration);
+        await mapper.MapAsync(configuration);
     }
 } 

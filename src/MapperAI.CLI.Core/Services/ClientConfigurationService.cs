@@ -20,7 +20,7 @@ public class ClientConfigurationService
     }
 
 
-    public ClientConfiguration? GetClientConfiguration()
+    public MapperClientConfiguration? GetClientConfiguration()
     {
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
         {
@@ -36,7 +36,7 @@ public class ClientConfigurationService
     }
 
 
-    public void SaveClientConfigurationFile(bool isKeyByEnvironment, ClientConfiguration clientConfiguration)
+    public void SaveClientConfigurationFile(bool isKeyByEnvironment, MapperClientConfiguration clientConfiguration)
     {
         
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
@@ -50,23 +50,18 @@ public class ClientConfigurationService
 
     }
     
-    private void CreateJsonFile(ClientConfiguration clientConfiguration, string path, bool isKeyByEnvironment)
+    private void CreateJsonFile(MapperClientConfiguration clientConfiguration, string path, bool isKeyByEnvironment)
     {
         string clientConfigurationJson = JsonSerializer.Serialize(new ClientConfigurationJson(clientConfiguration.Model, clientConfiguration.ApiKey, clientConfiguration.Type, isKeyByEnvironment));
         string jsonPath = Path.Combine(path, "config.json"); 
         File.WriteAllText(jsonPath, clientConfigurationJson);
     }
 
-    private ClientConfiguration ToResult(ClientConfigurationJson json)
+    private MapperClientConfiguration ToResult(ClientConfigurationJson json)
     {
-        return new ClientConfiguration()
-        {
-            ApiKey = json.IsKeyByEnvironment
-                ? Environment.GetEnvironmentVariable(json.ApiKey ?? "")
-                : json.ApiKey,
-            Model = json.Model,
-            Type = json.Type
-        };
+        return new MapperClientConfiguration(json.Model, json.IsKeyByEnvironment
+            ? Environment.GetEnvironmentVariable(json.ApiKey ?? "")
+            : json.ApiKey, json.Type);
     }
 }
 

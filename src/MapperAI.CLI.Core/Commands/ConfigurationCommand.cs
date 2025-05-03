@@ -28,13 +28,7 @@ public class ConfigurationCommand : ICommand
     public ValueTask ExecuteAsync(IConsole console)
     {
         ModelType modelType = GetModelType(ModelType);
-        ClientConfiguration clientConfiguration = new()
-        {
-            Model = ModelName,
-            Type = modelType,
-            ApiKey = ApiKey
-        };
-
+        MapperClientConfiguration clientConfiguration = new(ModelName, ApiKey, modelType);
         ClientConfigurationService configurationService = new ClientConfigurationService();
         configurationService.SaveClientConfigurationFile(IsKeyByEnvironment, clientConfiguration);
         return default;
